@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Tracker</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Task Tracker</h1>
+    </header>
+    
+    <div id="task-list"></div>
+    <div id="refresh-container">
+        <button onclick="fetchTasks()">Refresh Tasks</button>
+    </div>
+
+    <div id="form-container">
+        <form id="task-form" onsubmit="addTask(event)">
+            <input type="text" id="task-title" placeholder="Task Title" required>
+            <input type="text" id="task-description" placeholder="Task Description" required>
+            <select id="task-priority">
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+            </select>
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
+    
+    <div id="description-container">
+        <p id="description-paragraph" class="hidden"></p>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

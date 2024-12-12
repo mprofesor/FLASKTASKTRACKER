@@ -11,9 +11,9 @@ async function fetchTasks() {
             <span class="${task.completed ? 'completed' : ''}">
                 ${task.id}. ${task.title} (Priority: ${task.priority})
             </span>
-            <button onclick="showDescription('${task.description}')">Toggle Description</button>
-            <button onclick="toggleTask(${task.id})">Toggle Complete</button>
-            <button onclick="deleteTask(${task.id})">Delete</button>
+            <button onclick="showDescription('${encodeURIComponent(task.description)}')" id="toggle-description"><i class="fas fa-eye"></i></button>
+            <button onclick="toggleTask(${task.id})" id="toggle-complete"><i class="fas fa-check-circle"></i></button>
+            <button onclick="deleteTask(${task.id})" id="toggle-delete"><i class="fas fa-trash"></i></button>
         `;
         taskList.appendChild(taskDiv);
     });
@@ -50,14 +50,16 @@ async function deleteTask(taskId) {
     fetchTasks(); // Refresh task list after deletion
 }
 
-
 // Function to toggle the description
-function showDescription(description) {
+function showDescription(encodedDescription) {
     const descriptionElement = document.getElementById('description-paragraph');
+    
+    // Decode and replace \n with <br>
+    const description = decodeURIComponent(encodedDescription).replace(/\n/g, '<br>');
 
     // Toggle visibility and update content
     if (descriptionElement.classList.contains('hidden')) {
-        descriptionElement.textContent = description;
+        descriptionElement.innerHTML = description;
         descriptionElement.classList.remove('hidden');
     }
     else {

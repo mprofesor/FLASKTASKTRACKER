@@ -3,6 +3,7 @@ This is a simple task tracker written by me with a help of a ChatGPT (Such an am
 
 To run it:
 - Download all files
+- If You don't have flask installed install it using pip: `pip install flask`
 - use command `python3 app.py` inside directory with all files
 
 It will automatically run the server locally on `127.0.0.1:5000`
